@@ -1,0 +1,797 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-gutter: stable;
+}
+
+:root {
+    --primary: #5F5E61;
+    --accent: #409C8C;
+    --muted: #999;
+    --font-main: 'Open Sans', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: 14px;
+    line-height: 1.0;
+    color: var(--primary);
+    background-color: #ffffff;
+}
+
+p {
+    color: var(--muted);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section {
+    text-align: left;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-title {
+    font-family: var(--font-heading);
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    letter-spacing: 0;
+}
+
+.site-subtitle {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 200;
+    letter-spacing: 0;
+}
+
+/* MENU */
+.hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background-color: var(--primary);
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.hamburger.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* SIDE NAV PANEL */
+.main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); 
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* NAV CLOSE BUTTON */
+.nav-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.nav-close span {
+    width: 25px;
+    height: 2px;
+    background-color: var(--primary);
+    position: absolute;
+}
+
+.nav-close span:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.nav-close span:nth-child(2) {
+    transform: rotate(-45deg);
+}
+
+.nav-close:hover span {
+    background-color: var(--accent);
+}
+
+.main-nav.active {
+    right: 0;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 100px 40px 40px;
+    margin: 0;
+}
+
+.nav-menu li a {
+    display: block;
+    padding: 20px 0;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--primary);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+}
+
+.nav-menu li a:hover {
+    color: var(--accent);
+}
+
+/* NAV OVERLAY */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.nav-overlay.active {
+    display: block;
+}
+
+/* HERO SECTION */
+.hero {
+    background-color: #fff;
+    padding: 80px 0;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 330px 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-image {
+    text-align: center;
+}
+
+.profile-photo {
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.hero-text h2 {
+    font-family: var(--font-heading);
+    font-size: 80px;
+    font-weight: 600; /* semi-bold */
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    max-width: 550px;
+}
+
+/* CATEGORY NAVIGATION BUTTONS */
+.category-nav {
+    background-color: #fff;
+    padding: 40px 0 60px;
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: background-color 0.2s ease; /* Color change fade timing */
+    padding: 0; 
+}
+
+.category-btn:hover {
+    background-color: var(--accent); /* Teal color on hover */
+    color: #fff;
+    font-weight: 600;
+}
+
+/* LOGO GRID */
+#logo-grid-section {
+    background-color: #fff;
+    padding: 100px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px 80px;
+    align-items: center;
+    justify-items: center;
+}
+
+.logo-grid img {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.logo-grid img:hover {
+    opacity: 1;
+}
+
+/* INDIVIDUAL LOGO SIZES - DESKTOP */
+.logo-upwork { width: 200px; }
+.logo-anthem { width: 200px; }
+.logo-vw { width: 97px; }
+.logo-fox { width: 116px; }
+.logo-pitt { width: 220px; }
+.logo-cc { width: 190px; }
+.logo-thorn { width: 200px; }
+.logo-mcafee { width: 200px; }
+.logo-esurance { width: 211px; }
+
+/* PORTFOLIO SECTION */
+.portfolio-section {
+    background-color: #fff;
+    padding: 80px 0; /* space above and below portfolio section */
+}
+
+.portfolio-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px; /* distance between portfolio content and image */
+    align-items: center;
+    margin-bottom: 100px;
+    padding: 0;
+}
+
+.portfolio-item:last-child {
+    margin-bottom: 0;
+}
+
+.portfolio-text h3 {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.portfolio-text h3 a:hover {
+    color:var(--accent);
+}
+
+.portfolio-text h3 a {
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.portfolio-text p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.portfolio-logo {
+    text-align: center;
+}
+
+.portfolio-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* INDIVIDUAL PORTFOLIO IMAGE SIZES - DESKTOP */
+.portfolio-logo-upwork { width: 285px; }
+.portfolio-logo-anthem { width: 324px; }
+.portfolio-logo-vw { width: 200px; }
+.portfolio-logo-foster { width: 200px; }
+.portfolio-logo-esurance { width: 250px; }
+.portfolio-logo-cannes { width: 200px; }
+
+/* FOOTER */
+footer {
+    background-color: var(--primary);
+    padding: 50px 0 0 0;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.footer-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-main);
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-icon {
+    width: 40px; /* Adjust based on your preferred button size */
+    height: 40px;
+    transition: filter 0.3s ease, transform 0.2s ease;
+}
+
+.footer-copyright {
+    text-align: center;
+    margin-top: 40px;
+    padding-bottom: 20px;
+}
+
+.footer-copyright p {
+    font-size: 14px; 
+    color: var(--muted);
+    font-family: var(--font-main);
+}
+
+/* Hover States */
+.footer-btn:hover {
+    color: var(--accent);
+}
+
+.footer-btn:hover .footer-icon {
+    /* This filter converts black (#000) to Teal (#409C8C) */
+    filter: invert(53%) sepia(13%) saturate(1438%) hue-rotate(122deg) brightness(94%) contrast(84%);
+    transform: scale(1.05);
+}
+
+/* PORTFOLIO PAGES */
+/* Interior Page Layout */
+.page-intro {
+    display: flex;
+    align-items: baseline; /* Aligns text along the bottom edge */
+    justify-content: flex-start; /* Keeps them left-aligned */
+    gap: 16px; /* Space between the two words */
+    padding: 60px 0 40px;
+}
+
+.page-heading {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--primary);
+}
+
+.page-subheading {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 200;
+    color: var(--muted);
+}
+
+.case-study-block {
+    max-width: 1000px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.tricolor-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.case-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.client-title {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.client-description {
+    text-align: left;
+    margin: 0 auto 40px;
+    max-width: 500px;
+}
+
+.client-description p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.client-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.client-gallery img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+}
+
+.case-divider {
+    border: none;
+    margin: 80px 0;
+}
+
+.client-gallery a {
+    display: block;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.client-gallery img {
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.client-gallery a:hover img {
+    transform: scale(1.05);
+    filter: brightness(90%);
+}
+
+/* Carousel Container */
+.client-carousel {
+    margin-bottom: 40px;
+}
+
+/* Fix the container height so UI stays put */
+.splide__slide {
+    height: 360px; /* Set this to your tallest image's height */
+    background-color: #fff; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splide__slide img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;      /* Allows width to scale naturally */
+    height: auto;     /* Allows height to scale naturally */
+    object-fit: contain; /* Keeps the whole image visible, no cropping */
+    border: none;     /* Removes border if it looks messy with white space */
+}
+
+/* Ensures video posters scale proportionally within the carousel */
+.splide__slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Matches your image scaling logic */
+    background: #000;    /* Adds a black backdrop if the video is narrow */
+}
+
+/* Fix for GLightbox video container scaling */
+.gvideo-container {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100vw;
+}
+
+/* Ensure arrows stay centered relative to the fixed height */
+.splide__arrows {
+    display: flex;
+    align-items: center;
+}
+
+/* Customizing Splide Arrows to match your teal accent */
+.splide__arrow svg {
+    fill: var(--accent);
+}
+
+.splide__pagination__page.is-active {
+    background: var(--accent);
+}
+
+/* Ensure Lightbox UI is visible */
+.gcounter {
+    font-family: var(--font-main);
+    font-size: 14px;
+    color: #fff;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+.gnext, .gprev {
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.gnext svg, .gprev svg {
+    width: 30px;
+    height: 30px;
+}
+
+/* Hover state using Meredith's Teal */
+.gnext:hover, .gprev:hover {
+    background: var(--accent) !important;
+}
+
+
+/* Adjust the main image so it doesn't crash into the thumbnails */
+.gslide-image img {
+    max-height: 75vh !important; 
+    object-fit: contain;
+}
+
+.leadership-list {
+    text-align: left;
+    margin-top: 20px;
+    padding-left: 20px;
+    color: var(--primary);
+    line-height: 1.6;
+}
+
+.leadership-list li {
+    margin-bottom: 10px;
+    font-family: var(--font-main);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 220px 1fr;
+        gap: 40px;
+    }
+    
+    .profile-photo {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .portfolio-item {
+        gap: 50px;
+    }
+    
+    .site-title {
+        font-size: 40px;
+    }
+    
+    .site-subtitle {
+        font-size: 16px;
+    }
+    
+    .hero-text h2 {
+        font-size: 60px;
+    }
+    
+    .portfolio-text h3 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .site-title {
+        font-size: 32px;
+    }
+    
+    .site-subtitle {
+        font-size: 14px;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .profile-photo {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .hero-text h2 {
+        font-size: 50px;
+    }
+    
+    .hero-text p {
+        max-width: 100%;
+    }
+    
+    .category-buttons {
+        gap: 12px;
+    }
+    
+    .category-btn {
+        width: 100px; /* Circle size on mobile */
+        height: 100px;
+        font-size: 11px;
+    }
+    
+    .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    
+    /* Make 9th logo span both columns to center it */
+    .logo-grid img:nth-child(9) {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+    
+    /* Scale logos down proportionally for mobile */
+    .logo-upwork { width: 140px; }
+    .logo-anthem { width: 140px; }
+    .logo-vw { width: 68px; }
+    .logo-fox { width: 81px; }
+    .logo-pitt { width: 154px; }
+    .logo-cc { width: 133px; }
+    .logo-thorn { width: 140px; }
+    .logo-mcafee { width: 140px; }
+    .logo-esurance { width: 148px; }
+    
+    .portfolio-item {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-bottom: 50px;
+    }
+    
+    .portfolio-text h3 {
+        font-size: 28px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .client-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .splide__slide img {
+        height: 300px;
+    }
+
+    .client-description {
+        margin-bottom: 10px; /* Reduces the container margin on mobile */
+    }
+
+    .client-description p:last-child {
+        margin-bottom: 0; /* Ensures the last paragraph isn't pushing the carousel down */
+    }
+
+    .page-intro {
+        flex-direction: column; /* Stacks the heading and subheading */
+        align-items: flex-start; /* Aligns them both to the left */
+        gap: 5px; /* Tightens the vertical space between the two */
+        padding: 40px 0 20px; /* Reduced padding for mobile screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .site-title {
+        font-size: 28px;
+    }
+    
+    .site-subtitle {
+        font-size: 12px;
+    }
+    
+    .hero {
+        padding: 40px 0;
+    }
+    
+    .hero-text h2 {
+        font-size: 40px;
+    }
+    
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .category-btn {
+        width: 90px; /* Circle button size on phones */
+        height: 90px;
+        font-size: 10px;
+    }
+    
+    .logo-grid {
+        gap: 30px;
+    }
+    
+    /* Scale down even more for very small phones */
+    .logo-upwork { width: 120px; }
+    .logo-anthem { width: 120px; }
+    .logo-vw { width: 58px; }
+    .logo-fox { width: 70px; }
+    .logo-pitt { width: 132px; }
+    .logo-cc { width: 114px; }
+    .logo-thorn { width: 120px; }
+    .logo-mcafee { width: 120px; }
+    .logo-esurance { width: 127px; }
+    
+    .portfolio-text h3 {
+        font-size: 24px;
+    }
+}
